@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reportes Estadística 2026 — Oficina Técnica 01OT06</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-dark: #0a2e1a;
+    --green-mid: #1a5c35;
+    --green-accent: #2d9e5f;
+    --green-light: #a8e6c3;
+    --green-pale: #e8f7ef;
+    --cream: #f5f2eb;
+    --text-main: #0d1f14;
+    --text-muted: #4a6b56;
+    --card-border: rgba(45, 158, 95, 0.18);
+    --shadow: 0 4px 32px rgba(10, 46, 26, 0.10);
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Background pattern */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(45,158,95,0.07) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(10,46,26,0.06) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--green-dark);
+    color: var(--green-light);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+  }
+
+  .logo-badge span {
+    width: 6px; height: 6px;
+    background: var(--green-accent);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 2s infinite;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--green-dark);
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.65;
+  }
+
+  /* Month indicator */
+  .month-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-mid);
+    margin-top: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .month-tag svg {
+    width: 14px; height: 14px;
+    stroke: var(--green-accent);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* Divider */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--card-border), transparent);
+  }
+
+  .divider-text {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* Cards grid */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  @media (max-width: 540px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
+  .dept-card {
+    background: white;
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 28px 24px;
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    animation: fadeUp 0.6s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dept-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--green-accent), var(--green-light));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .dept-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(10, 46, 26, 0.12);
+    border-color: rgba(45, 158, 95, 0.35);
+  }
+
+  .dept-card:hover::before { transform: scaleX(1); }
+
+  .dept-card:nth-child(1) { animation-delay: 0.1s; }
+  .dept-card:nth-child(2) { animation-delay: 0.2s; }
+  .dept-card:nth-child(3) { animation-delay: 0.3s; }
+  .dept-card:nth-child(4) { animation-delay: 0.4s; }
+
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px;
+    font-size: 22px;
+  }
+
+  .card-icon.desechos  { background: #fef3e2; }
+  .card-icon.hospital  { background: #e8f4fd; }
+  .card-icon.lab       { background: #f0eafd; }
+  .card-icon.refs      { background: #e8f7ef; }
+
+  .card-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--green-dark);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  .card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-mid);
+    background: var(--green-pale);
+    border: none;
+    border-radius: 100px;
+    padding: 7px 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .card-btn svg {
+    width: 14px; height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.2s;
+  }
+
+  .dept-card:hover .card-btn {
+    background: var(--green-accent);
+    color: white;
+  }
+
+  .dept-card:hover .card-btn svg {
+    transform: translateX(3px);
+  }
+
+  /* Info footer */
+  .info-box {
+    background: var(--green-dark);
+    border-radius: 16px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .info-icon {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    background: rgba(45,158,95,0.25);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .info-icon svg {
+    width: 18px; height: 18px;
+    stroke: var(--green-light);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .info-text p:first-child {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--green-light);
+    margin-bottom: 4px;
+  }
+
+  .info-text p:last-child {
+    font-size: 12px;
+    color: rgba(168,230,195,0.65);
+    line-height: 1.55;
+  }
+
+  /* Footer */
+  footer {
+    text-align: center;
+    margin-top: 56px;
+    font-size: 12px;
+    color: var(--text-muted);
+    animation: fadeUp 0.6s 0.6s ease both;
+  }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div class="logo-badge"><span></span> Sistema activo</div>
+    <h1>Reportes Estadística 2026<br>Oficina Técnica 01OT06</h1>
+    <p class="subtitle">Selecciona tu área para ingresar la información del mes en curso.</p>
+    <div class="month-tag">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      <span id="mes-actual">Cargando mes...</span>
+    </div>
+  </header>
+
+  <div class="divider"><span class="divider-text">Selecciona tu área</span></div>
+
+  <div class="cards-grid">
+
+    <a class="dept-card" href="https://drive.google.com/drive/folders/1KVOZhjQyge3enm4sunB0BrdBOkRnfmCr?usp=drive_link" target="_blank" rel="noopener">
+      <div class="card-icon desechos">🗑️</div>
+      <div class="card-title">Desechos</div>
+      <p class="card-desc">Registro mensual de producción y metas del área de gestión de desechos.</p>
+      <span class="card-btn">
+        Abrir carpeta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="dept-card" href="https://drive.google.com/drive/folders/125vH6uLU5moZX_ZCgP7S0WXoStSGkD-n?usp=drive_link" target="_blank" rel="noopener">
+      <div class="card-icon hospital">🏥</div>
+      <div class="card-title">Hospital</div>
+      <p class="card-desc">Registro mensual de producción y metas del área hospitalaria.</p>
+      <span class="card-btn">
+        Abrir carpeta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="dept-card" href="https://drive.google.com/drive/folders/1HCMpp_wxdCGiYZzXEWzdCcbVh1vwzPHP?usp=drive_link" target="_blank" rel="noopener">
+      <div class="card-icon lab">🔬</div>
+      <div class="card-title">Laboratorio (recetas despachadas)</div>
+      <p class="card-desc">Registro mensual de producción y metas del área de laboratorio.</p>
+      <span class="card-btn">
+        Abrir carpeta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="dept-card" href="https://drive.google.com/drive/folders/1oSWdQshsVFDfD-gyHwRXIXRybsinixiV?usp=drive_link" target="_blank" rel="noopener">
+      <div class="card-icon refs">📋</div>
+      <div class="card-title">Referencias</div>
+      <p class="card-desc">Registro mensual de producción y metas del área de referencias.</p>
+      <span class="card-btn">
+        Abrir carpeta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+  </div>
+
+  <div class="info-box">
+    <div class="info-icon">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <div class="info-text">
+      <p>¿Cómo ingresar tu información?</p>
+      <p>Haz clic en tu área, abre el archivo Excel del mes actual en Google Drive y completa los campos de producción o metas. Los cambios se guardan automáticamente en la nube.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Sistema de Reporte Mensual &mdash; Uso interno</p>
+  </footer>
+
+</div>
+
+<script>
+  const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const ahora = new Date();
+  const texto = `${meses[ahora.getMonth()]} ${ahora.getFullYear()}`;
+  document.getElementById('mes-actual').textContent = texto;
+</script>
+</body>
+</html>
