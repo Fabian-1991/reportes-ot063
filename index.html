@@ -194,6 +194,7 @@
   .dept-card:nth-child(2) { animation-delay: 0.2s; }
   .dept-card:nth-child(3) { animation-delay: 0.3s; }
   .dept-card:nth-child(4) { animation-delay: 0.4s; }
+  .dept-card:nth-child(5) { animation-delay: 0.5s; }
 
   .card-icon {
     width: 48px; height: 48px;
@@ -207,6 +208,7 @@
   .card-icon.hospital  { background: #e8f4fd; }
   .card-icon.lab       { background: #f0eafd; }
   .card-icon.refs      { background: #e8f7ef; }
+  .card-icon.stats     { background: #fde8f0; }
 
   .card-title {
     font-family: 'DM Serif Display', serif;
@@ -373,6 +375,16 @@
       <div class="card-icon refs">📋</div>
       <div class="card-title">Referencias</div>
       <p class="card-desc">Registro mensual de producción y metas del área de referencias.</p>
+      <span class="card-btn">
+        Abrir carpeta
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </a>
+
+    <a class="dept-card" href="https://drive.google.com/drive/folders/1wx6h2Lts19vHEi5JX5tfQESVzftHEc1D?usp=drive_link" target="_blank" rel="noopener">
+      <div class="card-icon stats">📊</div>
+      <div class="card-title">Datos Estadísticos</div>
+      <p class="card-desc">Carga de datos relevantes solicitados por las unidades operativas.</p>
       <span class="card-btn">
         Abrir carpeta
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
