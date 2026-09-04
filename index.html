@@ -209,6 +209,7 @@
   .card-icon.lab       { background: #f0eafd; }
   .card-icon.refs      { background: #e8f7ef; }
   .card-icon.stats     { background: #fde8f0; }
+  .card-icon.viz       { background: #eaf2fd; }
 
   .card-title {
     font-family: 'DM Serif Display', serif;
@@ -257,6 +258,84 @@
 
   .dept-card:hover .card-btn svg {
     transform: translateX(3px);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 46, 26, 0.55);
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .modal-overlay.open {
+    display: flex;
+  }
+
+  .modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 28px;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(10, 46, 26, 0.25);
+    animation: fadeUp 0.3s ease both;
+  }
+
+  .modal-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.35rem;
+    color: var(--green-dark);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .modal-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--green-pale);
+    color: var(--green-mid);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 12px;
+    padding: 14px 18px;
+    margin-bottom: 12px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .modal-link:last-of-type { margin-bottom: 0; }
+
+  .modal-link:hover {
+    background: var(--green-accent);
+    color: white;
+  }
+
+  .modal-link svg {
+    width: 16px; height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+  }
+
+  .modal-close {
+    display: block;
+    margin: 20px auto 0;
+    background: none;
+    border: none;
+    font-size: 13px;
+    color: var(--text-muted);
+    cursor: pointer;
+    text-decoration: underline;
   }
 
   /* Info footer */
@@ -386,6 +465,30 @@
       </span>
     </a>
 
+    <div class="dept-card" onclick="abrirVisualizador()" role="button" tabindex="0" onkeydown="if(event.key==='Enter')abrirVisualizador()">
+      <div class="card-icon viz">📈</div>
+      <div class="card-title">Visualizador de Datos Estadísticos</div>
+      <span class="card-btn">
+        Ver opciones
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+
+  </div>
+
+  <div class="modal-overlay" id="modal-viz">
+    <div class="modal-box">
+      <div class="modal-title">Visualizador de Datos Estadísticos</div>
+      <a class="modal-link" href="https://app.powerbi.com/view?r=eyJrIjoiYzlkZDA4NDMtY2QxNi00YTg1LWIxOTMtOTA4ODIwZGJjM2Y3IiwidCI6ImNjZTllNTdjLWUxMDYtNDUzMC05NThlLTYyMzEyZDJiNWUzOSIsImMiOjR9" target="_blank" rel="noopener">
+        Cobertura en atenciones Médicas
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a class="modal-link" href="https://app.powerbi.com/view?r=eyJrIjoiZjQ4ZGZjYzQtMTUwYS00NjE3LWI5NmEtZTRiZGMyYzhkYjIwIiwidCI6ImNjZTllNTdjLWUxMDYtNDUzMC05NThlLTYyMzEyZDJiNWUzOSIsImMiOjR9" target="_blank" rel="noopener">
+        Cobertura en atenciones Odontológicas
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <button class="modal-close" onclick="cerrarVisualizador()">Cerrar</button>
+    </div>
   </div>
 
   <div class="info-box">
@@ -409,6 +512,13 @@
   const ahora = new Date();
   const texto = `${meses[ahora.getMonth()]} ${ahora.getFullYear()}`;
   document.getElementById('mes-actual').textContent = texto;
+
+  const modalViz = document.getElementById('modal-viz');
+  function abrirVisualizador() { modalViz.classList.add('open'); }
+  function cerrarVisualizador() { modalViz.classList.remove('open'); }
+  modalViz.addEventListener('click', (e) => { if (e.target === modalViz) cerrarVisualizador(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarVisualizador(); });
 </script>
 </body>
 </html>
+
