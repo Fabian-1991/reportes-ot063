@@ -210,8 +210,6 @@
   .card-icon.refs      { background: #e8f7ef; }
   .card-icon.stats     { background: #fde8f0; }
   .card-icon.viz       { background: #eaf2fd; }
-  .card-icon.prod      { background: #f5f0e6; }
-  .card-icon.etnia     { background: #f0f7e6; }
 
   .card-title {
     font-family: 'DM Serif Display', serif;
@@ -476,24 +474,6 @@
       </span>
     </div>
 
-    <div class="dept-card" onclick="abrirModal('modal-prod')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')abrirModal('modal-prod')">
-      <div class="card-icon prod">⚙️</div>
-      <div class="card-title">Productividad</div>
-      <span class="card-btn">
-        Ver opciones
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </span>
-    </div>
-
-    <div class="dept-card" onclick="abrirModal('modal-etnia')" role="button" tabindex="0" onkeydown="if(event.key==='Enter')abrirModal('modal-etnia')">
-      <div class="card-icon etnia">👥</div>
-      <div class="card-title">Causas de Morbilidad por etnia</div>
-      <span class="card-btn">
-        Ver opciones
-        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </span>
-    </div>
-
   </div>
 
   <div class="modal-overlay" id="modal-viz">
@@ -507,29 +487,15 @@
         Cobertura en atenciones Odontológicas
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <button class="modal-close" onclick="cerrarModal('modal-viz')">Cerrar</button>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="modal-prod">
-    <div class="modal-box">
-      <div class="modal-title">Productividad</div>
       <a class="modal-link" href="https://app.powerbi.com/view?r=eyJrIjoiZjY5MDMyOTItMjFmZi00YTM1LTg0NmYtMDA4YmIxZTE0NjcxIiwidCI6ImNjZTllNTdjLWUxMDYtNDUzMC05NThlLTYyMzEyZDJiNWUzOSIsImMiOjR9" target="_blank" rel="noopener">
-        Ver reporte de Productividad
+        Productividad
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <button class="modal-close" onclick="cerrarModal('modal-prod')">Cerrar</button>
-    </div>
-  </div>
-
-  <div class="modal-overlay" id="modal-etnia">
-    <div class="modal-box">
-      <div class="modal-title">Causas de Morbilidad por etnia</div>
       <a class="modal-link" href="https://app.powerbi.com/view?r=eyJrIjoiZmM2MDc4OTItNDQ1OC00MGNlLWE4YjYtM2ZhNjgxODRjMDY0IiwidCI6ImNjZTllNTdjLWUxMDYtNDUzMC05NThlLTYyMzEyZDJiNWUzOSIsImMiOjR9" target="_blank" rel="noopener">
-        Ver reporte de Morbilidad por etnia
+        Causas de Morbilidad por etnia
         <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <button class="modal-close" onclick="cerrarModal('modal-etnia')">Cerrar</button>
+      <button class="modal-close" onclick="cerrarModal('modal-viz')">Cerrar</button>
     </div>
   </div>
 
